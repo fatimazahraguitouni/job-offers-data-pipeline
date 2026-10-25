@@ -1,0 +1,11 @@
+pandas
+numpy
+scikit-learn
+sqlalchemy
+psycopg2-binary
+streamlit
+plotly
+joblib
+python-dotenv
+pytest
+ruff
