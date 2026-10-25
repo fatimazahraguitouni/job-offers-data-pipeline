@@ -6,11 +6,24 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
-      
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+
+  dashboard:
+    build: .
+    container_name: jobs_dashboard
+    env_file: .env
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_PORT: "5432"
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./models:/app/models:ro
+    depends_on:
+      - db
 
 volumes:
   pgdata:
